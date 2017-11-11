@@ -4,17 +4,14 @@
   connection: local
   tasks:
 
-    - name: SHOW SIP-UA REGISTER STATUS
+    - name: SHOW ISDN STATUS
       ios_command:
         commands:
-          - show sip-ua register status
-        wait_for: result[0] contains Registrar
+          - show isdn status
+        wait_for: result[0] contains ISDN
         username: "{{ un }}"
         password: "{{ pwd }}"
         host: "{{ inventory_hostname }}"
       register: result
     - debug:
         var: result
-    - copy:
-        content: "{{ result }}"
-        dest: "/Users/jonmarsh/Box Sync/BE4K-Personal/Skunkworks/ansible-demo/output.txt"
