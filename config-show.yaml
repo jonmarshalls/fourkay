@@ -16,5 +16,5 @@
     - debug:
         var: result
     - copy:
-        content: "{{ playbook_dir }}"
+        content: "{{ result }}"
         dest: "/Users/jonmarsh/Box Sync/BE4K-Personal/Skunkworks/ansible-demo/output.txt"
