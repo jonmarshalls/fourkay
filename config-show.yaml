@@ -1,0 +1,20 @@
+- name: SHOW TRUNK STATUS
+  hosts: ios
+  gather_facts: no
+  connection: local
+  tasks:
+
+    - name: SHOW SIP-UA REGISTER STATUS
+      ios_command:
+        commands:
+          - show sip-ua register status
+        wait_for: result[0] contains Registrar
+        username: "{{ un }}"
+        password: "{{ pwd }}"
+        host: "{{ inventory_hostname }}"
+      register: result
+    - debug:
+        var: result
+    - copy:
+        content: "{{ playbook_dir }}"
+        dest: "/Users/jonmarsh/Box Sync/BE4K-Personal/Skunkworks/ansible-demo/output.txt"
